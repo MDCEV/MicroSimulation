@@ -1,0 +1,15 @@
+Package: MicroSimulationEvs
+Type: Package
+Title: What the Package Does (Microsimulation)
+Version: 0.1.0
+Author: Andrea Pellegrini
+Maintainer: The package maintainer <Andrea.Pellegrini@uts.edu.au>
+Description: This package is suited to simulating how the Evs uptake will evolve in 20 years from now. 
+             It embraces a) Vehicle Transaction Model
+                         b) Infrastructure Model
+                         c) Fuel type Model
+                         d) Vehicle km Travelled Model
+License: UTS license
+Encoding: UTF-8
+LazyData: true
+

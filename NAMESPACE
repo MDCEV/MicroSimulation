@@ -1,0 +1,8 @@
+exportPattern("^[[:alpha:]]+")
+#' @import dplyr
+#' @import data.table
+#' @import magrittr
+#' @import stringi
+#' @import stringr
+#' @import openxlsx
+#' @import future.apply
