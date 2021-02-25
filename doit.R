@@ -64,7 +64,7 @@ doit<<-function(listcsv,Sources,house_attribute,attr_private,attr_punblic)
 
   rownames(Market_shares_overtime)=c(2020:2040);
   colnames(Market_shares_overtime)=c("Petrol",	"Diesel"	,"Hybrid-electric",	"Plug-in hybrid-electric",	"Battery electric"	,"Natural gas")
-  print(Market_shares_overtime)
+  #print(Market_shares_overtime)
 
   colnames(VKT_overtime)=c("Petrol",	"Diesel"	,"Hybrid-electric",	"Plug-in hybrid-electric",	"Battery electric"	,"Natural gas")
   rownames(VKT_overtime)=c(2020:2040)
@@ -73,11 +73,11 @@ doit<<-function(listcsv,Sources,house_attribute,attr_private,attr_punblic)
   rownames(VKT_overtime_Mean)=c(2020:2040)
   colnames(VKT_overtime_Mean)=c("Average VKT")
 
-  cat("Infrastructure:Houses","\n")
+  #cat("Infrastructure:Houses","\n")
   uptake_charger_house=t(t(uptake_charger_house));
   rownames(uptake_charger_house)=c(2020:2040)
   colnames(uptake_charger_house)=c("Houses")
-  cat("Infrastructure:Apartments","\n")
+  #cat("Infrastructure:Apartments","\n")
   colnames(apartment)=c("Communal Bays","Private spots","Total")
   rownames(apartment)=c(2020:2040);
   #print(apartment,"\n")
@@ -85,7 +85,7 @@ doit<<-function(listcsv,Sources,house_attribute,attr_private,attr_punblic)
                            "Mean_VKT" =VKT_overtime_Mean,"Infrastructur_Houses" =uptake_charger_house,
                            "Infrastructure_Apartments" =apartment);
     write.xlsx(list_of_datasets, file = "Microsimulation.xlsx", row.names=TRUE)
-  cat("Excel files are saved in your folder")
+  cat("Results saved in Microsimulation.xlsx ")
   Market_shares_overtime=NULL;
   VKT_overtime=NULL;
   VKT_overtime_Mean=NULL;
