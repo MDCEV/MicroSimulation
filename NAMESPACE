@@ -6,4 +6,3 @@ exportPattern("^[[:alpha:]]+")
 #' @import stringr
 #' @import openxlsx
 #' @import future.apply
-#' @import stats
