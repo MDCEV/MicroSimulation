@@ -6,6 +6,8 @@
 
 doit<<-function(listcsv,Sources,house_attribute,attr_private,attr_punblic)
 {
+  cat("Business Intelligence & Data Analytics (BIDA) Research Centre", "\n")
+  cat("MicroSimulation 1.0.0","\n")
   ####Output Matrixes
   Market_shares_overtime=matrix(NA,length(listcsv),6)
   VKT_overtime=matrix(NA,length(listcsv),6)
