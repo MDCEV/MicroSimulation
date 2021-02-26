@@ -4,7 +4,7 @@
 #########################################                                   #########################################
 #########################################                                   #########################################
 
-doit<<-function(listcsv,Sources,house_attribute,attr_private,attr_punblic)
+doit<<-function(FolderReadPath,FolderOutputPath,listcsv,Sources,house_attribute,attr_private,attr_punblic)
 {
   cat("Business Intelligence & Data Analytics (BIDA) Research Centre", "\n")
   cat("MicroSimulation 1.0.0","\n")
@@ -17,6 +17,7 @@ doit<<-function(listcsv,Sources,house_attribute,attr_private,attr_punblic)
   #Rdraws_KmDriven_years=matrix(runif(nrow(hh_syn)*4,0,1),nrow(hh_syn),4)
   count=2020;
   start_time <- Sys.time()
+  setwd(FolderReadPath);
   for (t in 2:length(listcsv))
   {
     if (count==2020)
@@ -83,6 +84,8 @@ doit<<-function(listcsv,Sources,house_attribute,attr_private,attr_punblic)
   colnames(apartment)=c("Communal Bays","Private spots","Total")
   rownames(apartment)=c(2020:2040);
   #print(apartment,"\n")
+
+  setwd(FolderOutputPath);
   list_of_datasets <- list("Vehicle Market" = Market_shares_overtime, "VKT" = VKT_overtime,
                            "Mean_VKT" =VKT_overtime_Mean,"Infrastructur_Houses" =uptake_charger_house,
                            "Infrastructure_Apartments" =apartment);
