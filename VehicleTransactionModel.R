@@ -63,7 +63,7 @@ KmDrivenFunction<<-function(x)
 #########################################          VKT                      #########################################
 #########################################                                   #########################################
 #' @export
-VKT<<-function(hh_syn,ScenarioVKT,index)
+VKT<<-function(hh_syn,ScenarioVKT,index,Mean_price)
 {
   Sociodemographic=cbind(hh_syn$n_children,hh_syn$`16-24 years`,hh_syn$`25-29 years`,hh_syn$`30-34 years`,hh_syn$`35-39 years`,hh_syn$`40-44 years`,hh_syn$`45-49 years`,hh_syn$`50-54 years`,
                          hh_syn$`55-59 years`,hh_syn$`60-64 years`,hh_syn$`65-69 years`,hh_syn$`70-74 years`,hh_syn$`75-79 years`,hh_syn$`80-84 years`,hh_syn$income,hh_syn$Sydney,hh_syn$`#Vehicles`)
@@ -121,7 +121,7 @@ VKT<<-function(hh_syn,ScenarioVKT,index)
     VTK3_1=(hh_syn$Vehicle1==1)*Ev_Km_charge_Scenario[1]+(hh_syn$Vehicle1==2)*Ev_Km_charge_Scenario[2]+(hh_syn$Vehicle1==3)*Ev_Km_charge_Scenario[3]+ (hh_syn$Vehicle1==4)*Ev_Km_charge_Scenario[4]+ (hh_syn$Vehicle1==5)*Ev_Km_charge_Scenario[5]
     VTK4_1=(hh_syn$Vehicle1==1)*Rebate_Scenario[1]+(hh_syn$Vehicle1==2)*Rebate_Scenario[2]+(hh_syn$Vehicle1==3)*Rebate_Scenario[3]+ (hh_syn$Vehicle1==4)*Rebate_Scenario[4]+ (hh_syn$Vehicle1==5)*Rebate_Scenario[5]
     VTK4_1=-VTK4_1
-    VTK=ASC_VTK +VTK1_1 +VTK2_1+VTK3_1+VTK4_1+ Sociodemographic%*%Beta_Socio;
+    VTK=ASC_VTK +VTK1_1 +VTK2_1+VTK3_1+VTK4_1+ Sociodemographic%*%Beta_Socio
     return(VTK)
   }
   if(index==2)
@@ -131,7 +131,7 @@ VKT<<-function(hh_syn,ScenarioVKT,index)
     VTK3_1=(hh_syn$Vehicle2==1)*Ev_Km_charge_Scenario[1]+(hh_syn$Vehicle2==2)*Ev_Km_charge_Scenario[2]+(hh_syn$Vehicle2==3)*Ev_Km_charge_Scenario[3]+ (hh_syn$Vehicle2==4)*Ev_Km_charge_Scenario[4]+ (hh_syn$Vehicle2==5)*Ev_Km_charge_Scenario[5]
     VTK4_1=(hh_syn$Vehicle2==1)*Rebate_Scenario[1]+(hh_syn$Vehicle2==2)*Rebate_Scenario[2]+(hh_syn$Vehicle2==3)*Rebate_Scenario[3]+ (hh_syn$Vehicle2==4)*Rebate_Scenario[4]+ (hh_syn$Vehicle2==5)*Rebate_Scenario[5]
     VTK4_1=-VTK4_1
-    VTK=ASC_VTK +VTK1_1 +VTK2_1+VTK3_1+VTK4_1+ Sociodemographic%*%Beta_Socio;
+    VTK=ASC_VTK +VTK1_1 +VTK2_1+VTK3_1+VTK4_1+ Sociodemographic%*%Beta_Socio
     return(VTK)
   }
   if(index==3)
@@ -141,7 +141,7 @@ VKT<<-function(hh_syn,ScenarioVKT,index)
     VTK3_1=(hh_syn$Vehicle3==1)*Ev_Km_charge_Scenario[1]+(hh_syn$Vehicle3==2)*Ev_Km_charge_Scenario[2]+(hh_syn$Vehicle3==3)*Ev_Km_charge_Scenario[3]+ (hh_syn$Vehicle3==4)*Ev_Km_charge_Scenario[4]+ (hh_syn$Vehicle3==5)*Ev_Km_charge_Scenario[5]
     VTK4_1=(hh_syn$Vehicle3==1)*Rebate_Scenario[1]+(hh_syn$Vehicle3==2)*Rebate_Scenario[2]+(hh_syn$Vehicle3==3)*Rebate_Scenario[3]+ (hh_syn$Vehicle3==4)*Rebate_Scenario[4]+ (hh_syn$Vehicle3==5)*Rebate_Scenario[5]
     VTK4_1=-VTK4_1
-    VTK=ASC_VTK +VTK1_1 +VTK2_1+VTK3_1+VTK4_1+ Sociodemographic%*%Beta_Socio;
+    VTK=ASC_VTK +VTK1_1 +VTK2_1+VTK3_1+VTK4_1+ Sociodemographic%*%Beta_Socio
     return(VTK)
   }
   if(index==4)
@@ -151,7 +151,7 @@ VKT<<-function(hh_syn,ScenarioVKT,index)
     VTK3_1=(hh_syn$Vehicle4==1)*Ev_Km_charge_Scenario[1]+(hh_syn$Vehicle4==2)*Ev_Km_charge_Scenario[2]+(hh_syn$Vehicle4==3)*Ev_Km_charge_Scenario[3]+ (hh_syn$Vehicle4==4)*Ev_Km_charge_Scenario[4]+ (hh_syn$Vehicle4==5)*Ev_Km_charge_Scenario[5]
     VTK4_1=(hh_syn$Vehicle4==1)*Rebate_Scenario[1]+(hh_syn$Vehicle4==2)*Rebate_Scenario[2]+(hh_syn$Vehicle4==3)*Rebate_Scenario[3]+ (hh_syn$Vehicle4==4)*Rebate_Scenario[4]+ (hh_syn$Vehicle4==5)*Rebate_Scenario[5]
     VTK4_1=-VTK4_1
-    VTK=ASC_VTK +VTK1_1 +VTK2_1+VTK3_1+VTK4_1+ Sociodemographic%*%Beta_Socio;
+    VTK=ASC_VTK +VTK1_1 +VTK2_1+VTK3_1+VTK4_1+ Sociodemographic%*%Beta_Socio
     return(VTK)
   }
 
@@ -161,7 +161,7 @@ VKT<<-function(hh_syn,ScenarioVKT,index)
 #########################################          VKT_update               #########################################
 #########################################                                   #########################################
 #' @export
-VKT_update<<-function(hh_syn,ScenarioVKT)
+VKT_update<<-function(hh_syn,ScenarioVKT,Mean_price)
 {
   Sociodemographic=cbind(hh_syn$n_children,hh_syn$`16-24 years`,hh_syn$`25-29 years`,hh_syn$`30-34 years`,hh_syn$`35-39 years`,hh_syn$`40-44 years`,hh_syn$`45-49 years`,hh_syn$`50-54 years`,
                          hh_syn$`55-59 years`,hh_syn$`60-64 years`,hh_syn$`65-69 years`,hh_syn$`70-74 years`,hh_syn$`75-79 years`,hh_syn$`80-84 years`,hh_syn$income,hh_syn$Sydney,hh_syn$`#Vehicles`)
@@ -216,7 +216,7 @@ VKT_update<<-function(hh_syn,ScenarioVKT)
   VTK3_1=(hh_syn$Vehicle1==1)*Ev_Km_charge_Scenario[1]+(hh_syn$Vehicle1==2)*Ev_Km_charge_Scenario[2]+(hh_syn$Vehicle1==3)*Ev_Km_charge_Scenario[3]+ (hh_syn$Vehicle1==4)*Ev_Km_charge_Scenario[4]+ (hh_syn$Vehicle1==5)*Ev_Km_charge_Scenario[5]
   VTK4_1=(hh_syn$Vehicle1==1)*Rebate_Scenario[1]+(hh_syn$Vehicle1==2)*Rebate_Scenario[2]+(hh_syn$Vehicle1==3)*Rebate_Scenario[3]+ (hh_syn$Vehicle1==4)*Rebate_Scenario[4]+ (hh_syn$Vehicle1==5)*Rebate_Scenario[5]
   VTK4_1=-VTK4_1
-  VTK=ASC_VTK +VTK1_1 +VTK2_1+VTK3_1+VTK4_1+ Sociodemographic%*%Beta_Socio;
+  VTK=ASC_VTK +VTK1_1 +VTK2_1+VTK3_1+VTK4_1+ Sociodemographic%*%Beta_Socio
   hh_syn$Veh_1_Km[hh_syn$newhouseholds==1]=VTK[hh_syn$newhouseholds==1]
 
   return(hh_syn)
@@ -229,7 +229,7 @@ VKT_update<<-function(hh_syn,ScenarioVKT)
 #########################################     VehicleTransactionModel       #########################################
 #########################################                                   #########################################
 #' @export
-VehicleTransactionModel<<-function(hh_syn)
+VehicleTransactionModel<<-function(hh_syn,Mean_price)
 {
 
   N_alternative=4
@@ -247,6 +247,7 @@ VehicleTransactionModel<<-function(hh_syn)
   {
 
     km=MatrixKm[,k]/1000
+    InteractionPrice=km*Mean_price;
     ageCar=MatrixAge[,k]
     XB_1_VEHICLE=cbind(ageCar,km)
     ysdummy=MatrixDummy[,k]
@@ -256,7 +257,7 @@ VehicleTransactionModel<<-function(hh_syn)
     I_ncome=hh_syn$income/1000
     XB_VEHICLE=cbind(XB_VEHICLE,hh_syn$`60-64 years`,hh_syn$`65-69 years`,hh_syn$`70-74 years`,hh_syn$`75-79 years`,hh_syn$`80-84 years`,hh_syn$`85 years and over`,hh_syn$houseEstimation,hh_syn$ApartEstimation,hh_syn$parkingspot,I_ncome)
     XB_2_VEHICLE=cbind(hh_syn$CentralCoast,hh_syn$CentralWest,hh_syn$HunterValley,hh_syn$Murray,hh_syn$Northwest,hh_syn$Riverina)
-    XB_VEHICLE_TRMODEL=cbind(XB_VEHICLE,XB_1_VEHICLE,XB_2_VEHICLE)
+    XB_VEHICLE_TRMODEL=cbind(XB_VEHICLE,XB_1_VEHICLE,XB_2_VEHICLE,InteractionPrice)
     Beta_VEHICLE_alt1=c(0.0948418,
                         -0.538642,
                         -0.488076,
@@ -283,6 +284,7 @@ VehicleTransactionModel<<-function(hh_syn)
                         0.903361,
                         0,
                         0.639582,
+                        0,
                         0)
 
     Beta_VEHICLE_alt2=c( 0.094538,
@@ -311,7 +313,8 @@ VehicleTransactionModel<<-function(hh_syn)
                          0.369313,
                          0.931189,
                          0,
-                         0.274889)
+                         0.274889,
+                         -0.009)
 
     Beta_VEHICLE_alt3=c(0.359738,
                         -0.451303,
@@ -339,6 +342,7 @@ VehicleTransactionModel<<-function(hh_syn)
                         0.903361,
                         0,
                         0.639582,
+                        0,
                         0)
 
     Beta_VEHICLE_alt4=c(rep(0,length(Beta_VEHICLE_alt3)))
@@ -353,10 +357,15 @@ VehicleTransactionModel<<-function(hh_syn)
            c,
            0)
 
-    LogitProb=function(X,B,pmatrix,ASCs,ysdummy)
+    LogitProb=function(X,B,pmatrix,ASCs,ysdummy,Mean_price)
     {
       for (i in 1:ncol(pmatrix))
-        pmatrix[,i]=X%*%B[i,] +ASCs[i]
+      {
+        if (i==2)
+          pmatrix[,i]=X%*%B[i,] +ASCs[i]
+        else
+          pmatrix[,i]=X%*%B[i,] +ASCs[i]
+      }
 
       pmatrix=exp(pmatrix)
       denominator=rowSums(pmatrix)
@@ -370,7 +379,7 @@ VehicleTransactionModel<<-function(hh_syn)
       return(pmatrix)
 
     }
-    Prob_VEHICLE_TRMODEL=LogitProb(XB_VEHICLE_TRMODEL[,2:ncol(XB_VEHICLE_TRMODEL)],Beta_matrix,Prob_VEHICLE_TRMODEL,ASCs,ysdummy)
+    Prob_VEHICLE_TRMODEL=LogitProb(XB_VEHICLE_TRMODEL[,2:ncol(XB_VEHICLE_TRMODEL)],Beta_matrix,Prob_VEHICLE_TRMODEL,ASCs,ysdummy,Mean_price)
 
     ########HERE I compute the probability that a household purchases a vehicle
     ##First to be reported is the matrix of explanatory variables X. Unlike the previous matrix, here I modify the last column as the geographical variables are being changed.
@@ -454,10 +463,10 @@ VehicleTransactionModel<<-function(hh_syn)
   Prob_VEHICLE_buy=matrix(99,nrow(hh_syn),2)
   #ASC_buy=-4.85836;
   ASC_buy=-5.35836;
-  BinaryLogitBuy=function(X,B,pmatrix,ASC)
+  BinaryLogitBuy=function(X,B,pmatrix,ASC,Mean_price)
   {
 
-    pmatrix[,1]=X%*%B + ASC
+    pmatrix[,1]=X%*%B + ASC -0.005*Mean_price
     pmatrix[,1]=exp(pmatrix[,1])
     denominator=pmatrix[,1]+1
 
@@ -473,7 +482,7 @@ VehicleTransactionModel<<-function(hh_syn)
   hh_syn$Action3=ActionSave[,3]
   hh_syn$Action4=ActionSave[,4]
 
-  Prob_VEHICLE_buy=BinaryLogitBuy(XB_VEHICLE_buy[,2:ncol(XB_VEHICLE_buy)],Beta_buy,Prob_VEHICLE_buy,ASC_buy)
+  Prob_VEHICLE_buy=BinaryLogitBuy(XB_VEHICLE_buy[,2:ncol(XB_VEHICLE_buy)],Beta_buy,Prob_VEHICLE_buy,ASC_buy,Mean_price)
   set.seed(as.integer(runif(1,1,4444)));
   R_buy=matrix(runif(nrow(hh_syn)*1,0,1),nrow(hh_syn),1);
   hh_syn$Action1_buy=ifelse(hh_syn$Action1==3 & R_buy<=Prob_VEHICLE_buy[,1] & hh_syn$`#Vehicles`<4,1,0)
@@ -483,7 +492,7 @@ VehicleTransactionModel<<-function(hh_syn)
   return(hh_syn)
 }
 #' @export
-ApplyActions<<-function(hh_syn,ScenarioVKT)
+ApplyActions<<-function(hh_syn,ScenarioVKT,Mean_price)
 {
 
   ########SELL NO REPLACE ###############
@@ -514,16 +523,16 @@ ApplyActions<<-function(hh_syn,ScenarioVKT)
   ### SELL AND REPLACE
 
   hh_syn$Veh_1_Age=ifelse(hh_syn$Action1==2,0,hh_syn$Veh_1_Age)
-  hh_syn$Veh_1_Km=ifelse(hh_syn$Action1==2,VKT(hh_syn,ScenarioVKT,1),hh_syn$Veh_1_Km)
+  hh_syn$Veh_1_Km=ifelse(hh_syn$Action1==2,VKT(hh_syn,ScenarioVKT,1,Mean_price),hh_syn$Veh_1_Km)
 
   hh_syn$Veh_2_Age=ifelse(hh_syn$Action2==2,0,hh_syn$Veh_2_Age)
-  hh_syn$Veh_2_Km=ifelse(hh_syn$Action2==2,VKT(hh_syn,ScenarioVKT,2),hh_syn$Veh_2_Km)
+  hh_syn$Veh_2_Km=ifelse(hh_syn$Action2==2,VKT(hh_syn,ScenarioVKT,2,Mean_price),hh_syn$Veh_2_Km)
 
   hh_syn$Veh_3_Age=ifelse(hh_syn$Action3==2,0,hh_syn$Veh_3_Age)
-  hh_syn$Veh_3_Km=ifelse(hh_syn$Action3==2,VKT(hh_syn,ScenarioVKT,3),hh_syn$Veh_3_Km)
+  hh_syn$Veh_3_Km=ifelse(hh_syn$Action3==2,VKT(hh_syn,ScenarioVKT,3,Mean_price),hh_syn$Veh_3_Km)
 
   hh_syn$Veh_4_Age=ifelse(hh_syn$Action4==2,0,hh_syn$Veh_4_Age)
-  hh_syn$Veh_4_Km=ifelse(hh_syn$Action4==2,VKT(hh_syn,ScenarioVKT,4),hh_syn$Veh_4_Km)
+  hh_syn$Veh_4_Km=ifelse(hh_syn$Action4==2,VKT(hh_syn,ScenarioVKT,4,Mean_price),hh_syn$Veh_4_Km)
 
   ###NO CHANGE - NO BUY
 
@@ -551,17 +560,17 @@ ApplyActions<<-function(hh_syn,ScenarioVKT)
 
 
   hh_syn$Veh_2_Age[(hh_syn$check==2)]=0
-  hh_syn$Veh_2_Km=ifelse(hh_syn$check==2,VKT(hh_syn,ScenarioVKT,2),hh_syn$Veh_2_Km)
+  hh_syn$Veh_2_Km=ifelse(hh_syn$check==2,VKT(hh_syn,ScenarioVKT,2,Mean_price),hh_syn$Veh_2_Km)
   hh_syn$`#Vehicles`=ifelse(hh_syn$check==2,hh_syn$`#Vehicles`+1,hh_syn$`#Vehicles`)
   #table(hh_syn$`#Vehicles`)
 
   hh_syn$Veh_3_Age[(hh_syn$check==3)]=0
-  hh_syn$Veh_3_Km=ifelse(hh_syn$check==3,VKT(hh_syn,ScenarioVKT,3),hh_syn$Veh_3_Km)
+  hh_syn$Veh_3_Km=ifelse(hh_syn$check==3,VKT(hh_syn,ScenarioVKT,3,Mean_price),hh_syn$Veh_3_Km)
   hh_syn$`#Vehicles`=ifelse(hh_syn$check==3,hh_syn$`#Vehicles`+1,hh_syn$`#Vehicles`)
   #table(hh_syn$`#Vehicles`)
 
   hh_syn$Veh_4_Age[(hh_syn$check==4)]=0
-  hh_syn$Veh_4_Km=ifelse(hh_syn$check==4,VKT(hh_syn,ScenarioVKT,4),hh_syn$Veh_4_Km)
+  hh_syn$Veh_4_Km=ifelse(hh_syn$check==4,VKT(hh_syn,ScenarioVKT,4,Mean_price),hh_syn$Veh_4_Km)
   hh_syn$`#Vehicles`=ifelse(hh_syn$check==4,hh_syn$`#Vehicles`+1,hh_syn$`#Vehicles`)
   return(hh_syn)
 }

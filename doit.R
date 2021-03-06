@@ -7,7 +7,7 @@
 doit<<-function(FolderReadPath,FolderOutputPath,listcsv,Sources,house_attribute,attr_private,attr_punblic)
 {
   cat("Business Intelligence & Data Analytics (BIDA) Research Centre", "\n")
-  cat("MicroSimulation 1.0.0","\n")
+  cat("MicroSimulation 1.0.3","\n")
   ####Output Matrixes
   Market_shares_overtime=matrix(NA,length(listcsv),6)
   VKT_overtime=matrix(NA,length(listcsv),6)
@@ -34,24 +34,29 @@ doit<<-function(FolderReadPath,FolderOutputPath,listcsv,Sources,house_attribute,
       uptake_charger_house[t-1]=sum(hh_syn$charger_house)
       apartment[t-1,]=c(sum( hh_syn$charger_apa_new==1),sum( hh_syn$charger_apa_new==2),sum( hh_syn$charger_apa_new==1)+sum( hh_syn$charger_apa_new==2))
       ##UpdateFunction
-      hh_syn_base=Read2020(hh_syn,Scenario_VKT)
+      Mean_price=(as.vector(as.data.frame(Sources[[1]]) [t-1,]));
+      Mean_price=rowMeans(Mean_price);
+      hh_syn_base=Read2020(hh_syn,Scenario_VKT,Mean_price)
       hh_syn=NULL;
       count=2020+1;
       cat("Year 2020","\n")
     }
 
     hh_syn=fread(listcsv[t], nThread = 8)
+    Mean_price=(as.vector(as.data.frame(Sources[[1]]) [t,]));
+    Mean_price=rowMeans(Mean_price);
     hh_syn=UpdateFunction(hh_syn,hh_syn_base)
     hh_syn=Infrastructure(hh_syn,hh_syn_base,t-1,house_attribute,attr_private,attr_punblic)
     hh_syn=Fueltype(hh_syn,Sources,t)
     Market_shares_overtime[t,]=OutPut_MarketShare(hh_syn)
+    print( Market_shares_overtime[t,])
     VKT_overtime[t,]=OutPut_VKT(hh_syn)
     VKT_overtime_Mean[t,1]=OutPut_VKT_Mean(hh_syn)
     uptake_charger_house[t]=sum(hh_syn$charger_house)
     apartment[t,]=c(sum( hh_syn$charger_apa_new==1),sum( hh_syn$charger_apa_new==2),sum( hh_syn$charger_apa_new==1)+sum( hh_syn$charger_apa_new==2))
-    hh_syn_base=VKT_update(hh_syn,Scenario_VKT)
+    hh_syn_base=VKT_update(hh_syn,Scenario_VKT,Mean_price)
     Scenario_VKT=(Read_Scenario_VKT(as.vector(as.data.frame(Sources[[9]])) [t,]));
-    hh_syn_base=ReadYears(hh_syn,Scenario_VKT)
+    hh_syn_base=ReadYears(hh_syn,Scenario_VKT,Mean_price)
     hh_syn=NULL;
     cat("Year ",count, "\n" )
     count=count+1;
