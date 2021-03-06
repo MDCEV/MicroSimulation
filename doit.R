@@ -49,7 +49,7 @@ doit<<-function(FolderReadPath,FolderOutputPath,listcsv,Sources,house_attribute,
     hh_syn=Infrastructure(hh_syn,hh_syn_base,t-1,house_attribute,attr_private,attr_punblic)
     hh_syn=Fueltype(hh_syn,Sources,t)
     Market_shares_overtime[t,]=OutPut_MarketShare(hh_syn)
-    print( Market_shares_overtime[t,])
+    #print( Market_shares_overtime[t,])
     VKT_overtime[t,]=OutPut_VKT(hh_syn)
     VKT_overtime_Mean[t,1]=OutPut_VKT_Mean(hh_syn)
     uptake_charger_house[t]=sum(hh_syn$charger_house)
