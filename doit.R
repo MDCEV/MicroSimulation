@@ -7,13 +7,14 @@
 doit<<-function(FolderReadPath,FolderOutputPath,listcsv,Sources,house_attribute,attr_private,attr_punblic)
 {
   cat("Business Intelligence & Data Analytics (BIDA) Research Centre", "\n")
-  cat("MicroSimulation 1.0.3","\n")
+  cat("MicroSimulation 1.0.0","\n")
   ####Output Matrixes
   Market_shares_overtime=matrix(NA,length(listcsv),6)
   VKT_overtime=matrix(NA,length(listcsv),6)
   VKT_overtime_Mean=matrix(NA,length(listcsv),1)
   uptake_charger_house=c(rep(0,length(listcsv)))
   apartment=matrix(NA,21,3)
+  Market_shares_overtime_NEW=matrix(NA,length(listcsv),6)
   #Rdraws_KmDriven_years=matrix(runif(nrow(hh_syn)*4,0,1),nrow(hh_syn),4)
   count=2020;
   start_time <- Sys.time()
@@ -29,34 +30,31 @@ doit<<-function(FolderReadPath,FolderOutputPath,listcsv,Sources,house_attribute,
       Scenario_VKT=(Read_Scenario_VKT(as.vector(as.data.frame(Sources[[9]])) [t-1,]));
       ##Save statiscs
       Market_shares_overtime[t-1,]=OutPut_MarketShare(hh_syn)
+      Market_shares_overtime_NEW[t-1,]=OutPut_MarketShare_NewVehiclesOnly(hh_syn)
       VKT_overtime[t-1,]=OutPut_VKT(hh_syn)
       VKT_overtime_Mean[t-1,1]=OutPut_VKT_Mean(hh_syn)
       uptake_charger_house[t-1]=sum(hh_syn$charger_house)
       apartment[t-1,]=c(sum( hh_syn$charger_apa_new==1),sum( hh_syn$charger_apa_new==2),sum( hh_syn$charger_apa_new==1)+sum( hh_syn$charger_apa_new==2))
       ##UpdateFunction
-      Mean_price=(as.vector(as.data.frame(Sources[[1]]) [t-1,]));
-      Mean_price=rowMeans(Mean_price);
-      hh_syn_base=Read2020(hh_syn,Scenario_VKT,Mean_price)
+      hh_syn_base=Read2020(hh_syn,Scenario_VKT)
       hh_syn=NULL;
       count=2020+1;
       cat("Year 2020","\n")
     }
 
     hh_syn=fread(listcsv[t], nThread = 8)
-    Mean_price=(as.vector(as.data.frame(Sources[[1]]) [t,]));
-    Mean_price=rowMeans(Mean_price);
     hh_syn=UpdateFunction(hh_syn,hh_syn_base)
     hh_syn=Infrastructure(hh_syn,hh_syn_base,t-1,house_attribute,attr_private,attr_punblic)
     hh_syn=Fueltype(hh_syn,Sources,t)
     Market_shares_overtime[t,]=OutPut_MarketShare(hh_syn)
-    #print( Market_shares_overtime[t,])
+    Market_shares_overtime_NEW[t,]=OutPut_MarketShare_NewVehiclesOnly(hh_syn)
     VKT_overtime[t,]=OutPut_VKT(hh_syn)
     VKT_overtime_Mean[t,1]=OutPut_VKT_Mean(hh_syn)
     uptake_charger_house[t]=sum(hh_syn$charger_house)
     apartment[t,]=c(sum( hh_syn$charger_apa_new==1),sum( hh_syn$charger_apa_new==2),sum( hh_syn$charger_apa_new==1)+sum( hh_syn$charger_apa_new==2))
-    hh_syn_base=VKT_update(hh_syn,Scenario_VKT,Mean_price)
+    hh_syn_base=VKT_update(hh_syn,Scenario_VKT)
     Scenario_VKT=(Read_Scenario_VKT(as.vector(as.data.frame(Sources[[9]])) [t,]));
-    hh_syn_base=ReadYears(hh_syn,Scenario_VKT,Mean_price)
+    hh_syn_base=ReadYears(hh_syn,Scenario_VKT)
     hh_syn=NULL;
     cat("Year ",count, "\n" )
     count=count+1;
@@ -73,6 +71,11 @@ doit<<-function(FolderReadPath,FolderOutputPath,listcsv,Sources,house_attribute,
   rownames(Market_shares_overtime)=c(2020:2040);
   colnames(Market_shares_overtime)=c("Petrol",	"Diesel"	,"Hybrid-electric",	"Plug-in hybrid-electric",	"Battery electric"	,"Natural gas")
   #print(Market_shares_overtime)
+
+  rownames(Market_shares_overtime_NEW)=c(2020:2040);
+  colnames(Market_shares_overtime_NEW)=c("Petrol",	"Diesel"	,"Hybrid-electric",	"Plug-in hybrid-electric",	"Battery electric"	,"Natural gas")
+  #print(Market_shares_overtime_NEW)
+
 
   colnames(VKT_overtime)=c("Petrol",	"Diesel"	,"Hybrid-electric",	"Plug-in hybrid-electric",	"Battery electric"	,"Natural gas")
   rownames(VKT_overtime)=c(2020:2040)
@@ -91,12 +94,14 @@ doit<<-function(FolderReadPath,FolderOutputPath,listcsv,Sources,house_attribute,
   #print(apartment,"\n")
 
   setwd(FolderOutputPath);
-  list_of_datasets <- list("Vehicle Market" = Market_shares_overtime, "VKT" = VKT_overtime,
-                           "Mean_VKT" =VKT_overtime_Mean,"Infrastructur_Houses" =uptake_charger_house,
+  list_of_datasets <- list("Vehicle Market" = Market_shares_overtime, "Purchased Vehicles" = Market_shares_overtime_NEW,
+                           "VKT" = VKT_overtime,"Mean_VKT" =VKT_overtime_Mean,
+                           "Infrastructur_Houses" =uptake_charger_house,
                            "Infrastructure_Apartments" =apartment);
     write.xlsx(list_of_datasets, file = "Microsimulation.xlsx", row.names=TRUE)
   cat("Results saved in Microsimulation.xlsx ")
   Market_shares_overtime=NULL;
+  Market_shares_overtime_NEW=NULL;
   VKT_overtime=NULL;
   VKT_overtime_Mean=NULL;
   apartment=NULL;

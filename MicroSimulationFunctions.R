@@ -160,14 +160,14 @@ UpdateFunction<<-function(hh_syn,hh_syn_base)
 #########################################         Read2020                  #########################################
 #########################################                                   #########################################
 #' @export
-Read2020<<-function(hh_syn,Scenario_VKT,Mean_price)
+Read2020<<-function(hh_syn,Scenario_VKT)
 {
 
   #Apply the Vehicle Transaction Model
-  hh_syn_base=VehicleTransactionModel(hh_syn,Mean_price);
+  hh_syn_base=VehicleTransactionModel(hh_syn);
   #Read the scenario Exelspreadsheet
   #Apply the Action model
-  hh_syn_base=ApplyActions(hh_syn_base,Scenario_VKT,Mean_price)
+  hh_syn_base=ApplyActions(hh_syn_base,Scenario_VKT)
   return(hh_syn_base)
 
 }
@@ -175,14 +175,14 @@ Read2020<<-function(hh_syn,Scenario_VKT,Mean_price)
 #########################################         Read2021                  #########################################
 #########################################                                   #########################################
 #' @export
-ReadYears<<-function(hh_syn,Scenario_VKT,Mean_price)
+ReadYears<<-function(hh_syn,Scenario_VKT)
 {
 
   #Apply the Vehicle Transaction Model
-  hh_syn_base=VehicleTransactionModel(hh_syn,Mean_price);
+  hh_syn_base=VehicleTransactionModel(hh_syn);
   #Read the scenario Exelspreadsheet
   #Apply the Action model
-  hh_syn_base=ApplyActions(hh_syn_base,Scenario_VKT,Mean_price)
+  hh_syn_base=ApplyActions(hh_syn_base,Scenario_VKT)
   return(hh_syn_base)
 
 }

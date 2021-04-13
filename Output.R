@@ -61,3 +61,27 @@ OutPut_VKT_Mean<<-function(hh_syn)
   return(mean(mylist))
 
 }
+
+#' @export
+OutPut_MarketShare_NewVehiclesOnly<<-function(hh_syn)
+{
+
+  A=ifelse(hh_syn$Action1==2  | hh_syn$Action1_buy==1,hh_syn$Vehicle1,0)
+  B=ifelse(hh_syn$Action2==2  | hh_syn$Action1_buy==1,hh_syn$Vehicle2,0)
+  C=ifelse(hh_syn$Action3==2  | hh_syn$Action1_buy==1,hh_syn$Vehicle3,0)
+  D=ifelse(hh_syn$Action4==2  | hh_syn$Action1_buy==1,hh_syn$Vehicle4,0)
+
+  AA=c(sum(A==1),sum(A==2),sum(A==3),sum(A==4),sum(A==5),sum(A==6))
+  BB=c(sum(B==1),sum(B==2),sum(B==3),sum(B==4),sum(B==5),sum(B==6))
+  CC=c(sum(C==1),sum(C==2),sum(C==3),sum(C==4),sum(C==5),sum(C==6))
+  DD=c(sum(D==1),sum(D==2),sum(D==3),sum(D==4),sum(D==5),sum(D==6))
+  AA=rbind(AA,BB,CC,DD)
+  Market_shares_overtime_NEW=c(colSums(AA))
+
+  names(Market_shares_overtime_NEW)=c("Petrol",	"Diesel"	,"Hybrid-electric",	"Plug-in hybrid-electric",	"Battery electric"	,"Natural gas")
+  #rownames(Market_shares_overtime)=c(2021:2040)
+  #round(as.data.frame(Market_shares_overtime),3)
+  #print(Market_shares_overtime)
+  return(Market_shares_overtime_NEW)
+
+}
